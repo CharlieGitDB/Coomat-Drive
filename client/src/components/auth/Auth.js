@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import Particles from 'react-particles-js'
-import { particlesOpt, particleCss } from './particlesconfig'
+import ParticleBackground from '../particlebackground/ParticleBackground'
+import './Auth.css'
 
 class Auth extends Component {
     componentDidMount() {
@@ -9,7 +9,7 @@ class Auth extends Component {
     render() {
         return (
             <div>
-                <Particles id="particles" params={particlesOpt} style={particleCss} />
+                <ParticleBackground />
             </div>
         )
     }
