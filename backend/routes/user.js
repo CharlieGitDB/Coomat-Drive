@@ -4,6 +4,10 @@ const { SessionChecker } = require('../providers/SessionUtil')
 const User = require('../models/User')
 const Response = require('../models/Response')
 
+router.get('/auth', SessionChecker, (req, res) => {
+  res.send(new Response({authorized: true}, 'User is authorized'), true)
+})
+
 router.get('/find/:username', SessionChecker, (req, res) => {
   User.findOne({where: {username: req.params.username}})
     .then(user => {
