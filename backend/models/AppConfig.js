@@ -33,6 +33,4 @@ AppConfig.initKey = function() {
     })
 }
 
-console.log(AppConfig, 'APCONFIG?')
-
 module.exports = AppConfig

@@ -1,9 +1,9 @@
 const express = require('express') 
 const router = express.Router()
-const { SessionChecker } = require('../providers/SessionUtil')
+const SessionUtil = require('../utils/SessionUtil')
 
 /* GET home page. */
-router.get('/', SessionChecker, (req, res, next) => {
+router.get('/', SessionUtil.sessionChecker, (req, res, next) => {
   res.send('home page')
 })
 

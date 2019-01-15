@@ -1,14 +1,14 @@
 const express = require('express')
 const router = express.Router()
-const { SessionChecker } = require('../providers/SessionUtil')
+const SessionUtil = require('../utils/SessionUtil')
 const User = require('../models/User')
 const Response = require('../models/Response')
 
-router.get('/auth', SessionChecker, (req, res) => {
+router.get('/auth', SessionUtil.sessionChecker, (req, res) => {
   res.send(new Response({authorized: true}, 'User is authorized'), true)
 })
 
-router.get('/find/:username', SessionChecker, (req, res) => {
+router.get('/find/:username', SessionUtil.sessionChecker, (req, res) => {
   User.findOne({where: {username: req.params.username}})
     .then(user => {
       if (!user) {
