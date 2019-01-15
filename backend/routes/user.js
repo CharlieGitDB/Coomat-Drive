@@ -4,7 +4,7 @@ const { SessionChecker } = require('../providers/SessionUtil')
 const User = require('../models/User')
 const Response = require('../models/Response')
 
-router.get('/:username', SessionChecker, (req, res) => {
+router.get('/find/:username', SessionChecker, (req, res) => {
   User.findOne({where: {username: req.params.username}})
     .then(user => {
       if (!user) {
@@ -48,7 +48,7 @@ router.post('/register', (req, res) => {
 })
 
 router.get('/logout', (req, res) => {
-  res.clearCookie('user_sid');
+  res.clearCookie('user_sid')
   res.send(new Response(null, 'User logged out', true))
 })
 
