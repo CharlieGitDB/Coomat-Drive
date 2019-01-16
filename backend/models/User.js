@@ -11,6 +11,10 @@ const User = Sql.define('users', {
     password: {
         type: Sql.seq.STRING,
         allowNull: false
+    },
+    isAdmin: {
+        type: Sql.seq.BOOLEAN,
+        allowNull: true
     }
 }, {
     hooks: {

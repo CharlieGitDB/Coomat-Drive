@@ -1,3 +1,14 @@
 .Header {
     z-index: 10000;
 }
+.Header .coo {
+    font-weight: bold;
+}
+.Header .coo,
+.Header .drive {
+    color: #555;
+}
+.Header .mat {
+    color: #00695C;
+    font-weight: bold;
+}

@@ -1,5 +1,5 @@
 const Sequelize = require('sequelize')
-const STATIC_VARS = require('../utils/StaticVariables')
+const STATIC_VARS = require('../models/StaticVariables')
 
 const sqlize = new Sequelize(STATIC_VARS.dburl)
 

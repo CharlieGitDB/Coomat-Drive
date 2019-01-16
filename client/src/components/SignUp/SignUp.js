@@ -27,7 +27,7 @@ class SignUp extends Component {
                     <form onSubmit={this.onSubmit}>
                         <input placeholder="Username" type="text" />
                         <input placeholder="Password" type="password" />
-                        {this.state.form === FORM_STATUS.LOGIN ? '' : <input placeholder="Re-typed password" type="password" />}
+                        {this.state.form === FORM_STATUS.LOGIN ? '' : <input placeholder="Secret Key" type="text" />}
                         <button className="button-primary">Submit</button>
                     </form>
                 </div>

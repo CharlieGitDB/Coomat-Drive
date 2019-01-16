@@ -3,11 +3,13 @@ import { Navbar, Nav, NavItem, Glyphicon } from 'react-bootstrap'
 
 import AuthService from '../../providers/AuthService'
 
+import './Header.css'
+
 const Header = ({ hasAuth }) => (
     <Navbar className="Header" fixedTop fluid>
         <Navbar.Header>
             <Navbar.Brand>
-                CooMat Drive
+                <span className="coo">Coo</span><span className="mat">Mat</span> <span className="drive">Drive</span>
             </Navbar.Brand>
             <Navbar.Toggle />
         </Navbar.Header>
