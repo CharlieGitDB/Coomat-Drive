@@ -1,4 +1,7 @@
 import React, { Component } from 'react'
+import UserService from '../../providers/UserService'
+import ErrorService from '../../providers/ErrorService'
+
 import './SignUp.css'
 
 const FORM_STATUS = {
@@ -7,17 +10,17 @@ const FORM_STATUS = {
 }
 
 class SignUp extends Component {
-    constructor() {
-        super()
-        
-        this.state = { form: FORM_STATUS.LOGIN }
-    }
-
+    state = { form: FORM_STATUS.LOGIN }
+    
     componentDidMount() {
     }
-
+    
     onSubmit = (e) => {
         e.preventDefault()
+
+        UserService.login(this.username.value, this.password.value)
+            .then(res => UserService.updateAuth(true))
+            .catch(err => ErrorService.updateError(err.msg))
     }
 
     render() {
@@ -25,9 +28,21 @@ class SignUp extends Component {
             <div className="SignUp">
                 <div className="form-div" style={{transform: `translate(${this.state.form === FORM_STATUS.LOGIN ? 0 : 250}px, 0px)`}}>
                     <form onSubmit={this.onSubmit}>
-                        <input placeholder="Username" type="text" />
-                        <input placeholder="Password" type="password" />
-                        {this.state.form === FORM_STATUS.LOGIN ? '' : <input placeholder="Secret Key" type="text" />}
+                        <input 
+                            type="text"
+                            ref={input => {this.username = input}}
+                            name="username"
+                            placeholder="Username"
+                            required
+                        />
+                        <input 
+                            type="password" 
+                            ref={input => {this.password = input}}
+                            name="password"
+                            placeholder="Password"
+                            required
+                        />
+                        {this.state.form === FORM_STATUS.LOGIN ? '' : <input type="text" ref={input => {this.secretKey = input}} name="secretKey" placeholder="Secret Key" required />}
                         <button className="button-primary">Submit</button>
                     </form>
                 </div>

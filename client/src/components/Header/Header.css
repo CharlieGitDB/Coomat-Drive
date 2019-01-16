@@ -1,6 +1,10 @@
 .Header {
     z-index: 10000;
 }
+.Header.navbar {
+    margin-bottom: 0;
+    border-radius: 0;
+}
 .Header .coo {
     font-weight: bold;
 }

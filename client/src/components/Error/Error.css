@@ -1,0 +1,21 @@
+.Error {
+    position: relative;
+    z-index: 10;
+    height: 40px;
+    line-height: 40px;
+    font-size: 1.2em;
+    margin: auto;
+    text-align: center;
+    background: #FF1744;
+    color: white;
+}
+.Error .error-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.Error .exit-btn {
+    cursor: pointer;
+    position: absolute;
+    right: 15px;
+}

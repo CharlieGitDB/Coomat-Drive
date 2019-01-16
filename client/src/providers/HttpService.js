@@ -1,4 +1,5 @@
-import AuthSerivce from './AuthService'
+import UserService from './UserService'
+import ErrorService from './ErrorService'
 
 const HttpMethods = {
     GET: 'GET',
@@ -24,6 +25,7 @@ export default class HttpService {
                     if (this.checkForErr(res)) {
                         reject(res)
                     } else {
+                        ErrorService.removeError()
                         resolve(res)
                     }
                 })
@@ -38,7 +40,7 @@ export default class HttpService {
         let hasErr = false
         
         if (err != null && err.data != null && err.data.authorized != null && err.data.authorized === false) {
-            AuthSerivce.updateAuth(false)
+            UserService.updateAuth(false)
             hasErr = true
         }
 
