@@ -5,6 +5,7 @@ const logger = require('morgan')
 const session = require('express-session')
 const Response = require('./models/Response')
 const StaticVariables = require('./models/StaticVariables')
+const AuthUtil = require('./utils/AuthUtil')
 
 const indexRouter = require('./routes/index')
 const usersRouter = require('./routes/user')
@@ -27,12 +28,7 @@ app.use(session({
     }
 }))
 
-app.use((req, res, next) => {
-    if (req.cookies.user_sid && !req.session.user) {
-        res.clearCookie('user_sid');
-    }
-    next()
-})
+app.use(AuthUtil.clearSessionIfNoUser)
 
 app.use('/', indexRouter)
 app.use('/user', usersRouter)
