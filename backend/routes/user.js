@@ -1,6 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const AuthUtil = require('../utils/AuthUtil')
+const EncryptUtil = require('../utils/EncrpytUtil')
 const User = require('../models/User')
 const SafeUser = require('../models/SafeUser')
 const Response = require('../models/Response')
@@ -39,17 +40,21 @@ router.post('/login', (req, res) => {
 })
 
 router.post('/register', (req, res) => {
-    User.create({
-        username: req.body.username,
-        password: req.body.password
-    })
-    .then(user => {
-        req.session.user = user.dataValues
-        res.send(new Response(new SafeUser(user), 'User created successfully', true))
-    })
-    .catch(err => {
-        res.send(new Response(null, err.errors, false))
-    })
+    if (req.body.secretKey && EncryptUtil.validKey(req.body.secretKey)) {
+        User.create({
+            username: req.body.username,
+            password: req.body.password
+        })
+        .then(user => {
+            req.session.user = user.dataValues
+            res.send(new Response(new SafeUser(user), 'User created successfully', true))
+        })
+        .catch(err => {
+            res.send(new Response(null, err.errors, false))
+        })
+    } else {
+        res.send(new Response(null, 'Incorrect secret key', false))
+    }
 })
 
 router.get('/logout', (req, res) => {

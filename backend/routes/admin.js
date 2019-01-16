@@ -21,8 +21,7 @@ router.get('/find/:username', (req, res) => {
 
 router.delete('/delete/:username', (req, res) => {
     User.destroy({ where: { username: req.params.username } })
-        .then(res => res.send(new Response(null, 'User deleted', true)))
-        .catch(err => res.send(new Response(null, err, false)))
+        .then(() => res.send(new Response(null, 'User deleted', true)))
 })
 
 module.exports = router

@@ -1,8 +1,8 @@
 const STATIC_VARS = require('../models/StaticVariables')
 const bcrypt = require('bcrypt')
 
-const EncryptUil = {
-    validateKey: (key) => {
+const EncryptUtil = {
+    validKey: (key) => {
         return bcrypt.compareSync(key, STATIC_VARS.keyHash)
     }
 }
