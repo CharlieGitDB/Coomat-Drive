@@ -1,4 +1,5 @@
 const Response = require('../models/Response')
+const ErrorUtil = require('../utils/ErrorUtil')
 
 const AuthUtil = {
     checkAuth: (req, res, next) => {
@@ -23,9 +24,6 @@ const AuthUtil = {
     }
 }
 
-const returnError = (res) => {
-    res.status(500)
-    res.send(new Response({authorized: false}, 'User is not authorized', false))
-}
+const returnError = (res) => ErrorUtil.createError(res, {authorized: false}, 'User is not authorized')
 
 module.exports = AuthUtil
