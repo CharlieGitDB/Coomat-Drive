@@ -30,7 +30,7 @@ router.post('/login', (req, res) => {
     User.findOne({ where: { username: username } })
         .then(user => {
             if (!user || !user.validPassword(password)) {
-                ErrorUtil.createError(res, 'Failed to login')\
+                ErrorUtil.createError(res, 'Failed to login')
             } else {
                 req.session.user = user.dataValues
                 res.send(new Response(new SafeUser(user), 'Logged In successfully', true))

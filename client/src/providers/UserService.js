@@ -16,12 +16,8 @@ class UserService {
     getAuth = () => {
         return new Promise((resolve, reject) => {
             HttpService.Get('/user/auth')
-                .then(res => {
-                    resolve(true)
-                })
-                .catch(err => {
-                    resolve(false)
-                })
+                .then(res => resolve(true))
+                .catch(err => reject(err))
         })
     }
 

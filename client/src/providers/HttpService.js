@@ -17,7 +17,7 @@ export default class HttpService {
         }
 
         if (method === HttpMethods.POST) opts.body = JSON.stringify(data)
-
+        
         return new Promise((resolve, reject) => {
             fetch(url, opts)
                 .then(res => res.json())
@@ -39,9 +39,12 @@ export default class HttpService {
     static checkForErr(err) {
         let hasErr = false
         
-        if (err != null && err.data != null && err.data.authorized != null && err.data.authorized === false) {
-            UserService.updateAuth(false)
-            hasErr = true
+        if (err != null) {
+            if (err.data != null && err.data.authorized != null && err.data.authorized === false) {
+                UserService.updateAuth(false)
+            }
+
+            if (err.status === false) hasErr = true
         }
 
         return hasErr

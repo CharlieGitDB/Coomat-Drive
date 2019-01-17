@@ -1,18 +1,21 @@
 .Header {
-    z-index: 10000;
+    z-index: 1000;
 }
 .Header.navbar {
     margin-bottom: 0;
     border-radius: 0;
 }
-.Header .coo {
+.Header .coo,
+.Header .mat {
     font-weight: bold;
 }
 .Header .coo,
 .Header .drive {
     color: #555;
 }
+.Header .drive {
+    font-weight: 600;
+}
 .Header .mat {
     color: #00695C;
-    font-weight: bold;
 }

@@ -24,6 +24,6 @@ const AuthUtil = {
     }
 }
 
-const returnError = (res) => ErrorUtil.createError(res, {authorized: false}, 'User is not authorized')
+const returnError = (res) => ErrorUtil.createError(res, 'User is not authorized', {authorized: false})
 
 module.exports = AuthUtil

@@ -18,9 +18,26 @@ class SignUp extends Component {
     onSubmit = (e) => {
         e.preventDefault()
 
+        this.state.form === FORM_STATUS.LOGIN ? this.login() : this.register()
+    }
+
+    login = () => {
         UserService.login(this.username.value, this.password.value)
             .then(res => UserService.updateAuth(true))
-            .catch(err => ErrorService.updateError(err.msg))
+            .catch(err => {
+                ErrorService.updateError(err.msg)
+                this.password.value = ''
+            })
+    }
+
+    register = () => {
+        UserService.register(this.username.value, this.password.value, this.secretKey.value)
+            .then(res => UserService.updateAuth(true))
+            .catch(err => {
+                ErrorService.updateError(err.msg)
+                this.password.value = ''
+                this.secretKey.value = ''
+            })
     }
 
     render() {

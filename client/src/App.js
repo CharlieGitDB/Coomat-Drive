@@ -31,6 +31,12 @@ class App extends Component {
                 })
             })
         })
+        .catch(err => {
+            this.setState({
+                hideLoader: true,
+                hasAuth: false
+            })
+        })
     }
 
     watchError() {

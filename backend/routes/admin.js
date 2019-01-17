@@ -1,6 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const AuthUtil = require('../utils/AuthUtil')
+const ErrorUtil = require('../utils/ErrorUtil')
 const User = require('../models/User')
 const SafeUser = require('../models/SafeUser')
 const Response = require('../models/Response')
@@ -11,7 +12,7 @@ router.get('/find/:username', (req, res) => {
     User.findOne({ where: { username: req.params.username } })
         .then(user => {
             if (!user) {
-                res.send(new Response(null, 'User not found', false))
+                ErrorUtil.createError(res, 'User not found')
             } else {
                 res.send(new Response(new SafeUser(user), 'User returned', true))
             }
@@ -21,7 +22,14 @@ router.get('/find/:username', (req, res) => {
 
 router.delete('/delete/:username', (req, res) => {
     User.destroy({ where: { username: req.params.username } })
-        .then(() => res.send(new Response(null, 'User deleted', true)))
+        .then(user => {
+            if (!user) {
+                ErrorUtil.createError(res, 'User not found')
+            } else {
+                res.send(new Response(null, 'User deleted', true))
+            }
+        })
+        .catch(err => ErrorUtil.createError(res, 'Unable to delete user'))
 })
 
 module.exports = router
