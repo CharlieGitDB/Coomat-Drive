@@ -8,7 +8,7 @@ const SafeUser = require('../models/SafeUser')
 const Response = require('../models/Response')
 
 router.get('/auth', AuthUtil.checkAuth, (req, res) => {
-    res.send(new Response({ authorized: true }, 'User is authorized'), true)
+    res.send(new Response({ authorized: true }, 'User is authorized', true))
 })
 
 router.get('/', AuthUtil.checkAuth, (req, res) => {

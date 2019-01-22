@@ -1,4 +1,3 @@
-const Response = require('../models/Response')
 const ErrorUtil = require('../utils/ErrorUtil')
 
 const AuthUtil = {
@@ -18,12 +17,13 @@ const AuthUtil = {
     },
     clearSessionIfNoUser: (req, res, next) => {
         if (req.cookies.user_sid && !req.session.user) {
-            res.clearCookie('user_sid');
+            console.log('hit clear')
+            res.clearCookie('user_sid')
         }
         next()
     }
 }
 
-const returnError = (res) => ErrorUtil.createError(res, 'User is not authorized', {authorized: false})
+const returnError = (res) => ErrorUtil.createError(res, 'User is not authorized', { authorized: false })
 
 module.exports = AuthUtil
