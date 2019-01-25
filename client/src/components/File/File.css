@@ -1,0 +1,21 @@
+.File {
+    display: inline-block;
+    border: 1px solid#ccc;
+    padding: 30px 30px;
+    border-radius: 4px;
+    margin: 7px;
+    width: 220px;
+    cursor: pointer;
+}
+.File:hover,
+.File:focus {
+    color: #333;
+    background-color: #e6e6e6;
+    border-color: #adadad;
+}
+.File .file-container {
+    text-align: center;
+}
+.File .file-icon {
+    font-size: 3em;
+}
