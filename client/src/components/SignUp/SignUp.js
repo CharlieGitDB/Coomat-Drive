@@ -12,9 +12,6 @@ const FORM_STATUS = {
 class SignUp extends Component {
     state = { form: FORM_STATUS.LOGIN }
     
-    componentDidMount() {
-    }
-    
     onSubmit = (e) => {
         e.preventDefault()
 

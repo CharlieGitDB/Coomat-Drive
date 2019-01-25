@@ -3,7 +3,7 @@ import { observe } from 'rxjs-observe'
 
 class UserService {
     constructor() {
-        const auth = { authorized: true }
+        const auth = { authorized: false }
         const {observables, proxy} = observe(auth)
         this.observables = observables
         this.proxy = proxy

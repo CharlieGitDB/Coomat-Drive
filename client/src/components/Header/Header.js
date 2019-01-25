@@ -1,6 +1,8 @@
 import React from 'react'
 import { Navbar, Nav, NavItem, Glyphicon } from 'react-bootstrap'
 
+import HeaderSearch from '../HeaderSearch/HeaderSearch'
+
 import UserService from '../../providers/UserService'
 
 import './Header.css'
@@ -23,6 +25,7 @@ const Header = ({ hasAuth }) => (
                     ) : null
                 }
             </Nav>
+            {hasAuth ? <HeaderSearch /> : null}
         </Navbar.Collapse>
     </Navbar>
 )

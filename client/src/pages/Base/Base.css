@@ -2,8 +2,5 @@
     position: fixed;
     height: 100%;
     width: 100%;
-}
-.cnt {
-    background: yellow;
-    height: 100%;
+    display: flex;
 }

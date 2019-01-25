@@ -1,0 +1,14 @@
+.HeaderSearch {
+    display: block;
+    text-align: center;
+}
+.HeaderSearch input[type="text"] {
+    box-shadow: none;
+    border-radius: 0;
+    width: 45vw;
+}
+@media only screen and (max-width: 767px) {
+    .HeaderSearch input[type="text"] {
+        width: 100%;
+    }
+}

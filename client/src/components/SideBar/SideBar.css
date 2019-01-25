@@ -1,6 +1,28 @@
 .SideBar {
-    width: 25rem;
-    float: left;
-    background: green;
+    width: 22.4rem;
+    flex: 0 0 auto;
     height: 100%;
+    /* background: #f8f8f8; */
+    /* border-right: 1px solid #e7e7e7; */
+    padding: 15px;
+}
+.SideBar a {
+    color: #00695C;
+    font-weight: 600;
+}
+.SideBar .new-btn {
+    text-align: left;
+}
+.SideBar .new-icon {
+    margin-left: 2px;
+}
+.SideBar .new-text {
+    margin-left: 48px;
+    font-weight: 600;
+}
+.SideBar .menu-items {
+    margin-top: 5px;
+}
+.SideBar .menu-item {
+    margin-left: 3.5em;
 }

@@ -11,33 +11,42 @@ import ErrorService from './providers/ErrorService'
 import './App.css'
 
 class App extends Component {
-    componentWillMount() {
-        this.watchAuth()
-        this.watchError()
-    }
-
     state = {
         hideLoader: false,
         hasAuth: false,
         errorMsg: ''
     }
+    
+    componentWillMount() {
+        this.watchAuth()
+        this.watchError()
+    }
+    
+    getInitAuth() {
+        return new Promise(resolve => {
+            UserService.getAuth()
+                .then(() => {
+                    UserService.updateAuth(true)
+                    resolve(true)
+                })
+                .catch(() =>{
+                    UserService.updateAuth(false)
+                    resolve(false)
+                }) 
+        })
+    }
 
     watchAuth() {
-        UserService.getAuth()
-            .then(authStatus => UserService.updateAuth(authStatus))
-            .catch(err => {
-                this.setState({
-                    hideLoader: true,
-                    hasAuth: false
+        this.getInitAuth()
+            .then(() => {
+                UserService.onAuthStateChange().subscribe(hasAuth => {
+                    this.setState({
+                        hideLoader: true,
+                        hasAuth: hasAuth
+                    })
                 })
             })
 
-        UserService.onAuthStateChange().subscribe(hasAuth => {
-            this.setState({
-                hideLoader: true,
-                hasAuth: hasAuth
-            })
-        })
     }
 
     watchError() {
