@@ -1,5 +1,5 @@
 const NetworkUtil = {
-    isLocalHost: (req) => {
+    isLocalHost(req) {
         let ip = req.connection.remoteAddress
 
         return ip === '127.0.0.1' || ip === '::ffff:127.0.0.1'

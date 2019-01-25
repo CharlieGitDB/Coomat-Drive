@@ -6,6 +6,7 @@ const ErrorUtil = require('../utils/ErrorUtil')
 const User = require('../models/User')
 const SafeUser = require('../models/SafeUser')
 const Response = require('../models/Response')
+const FSUtil = require('../utils/FileSystemUtil')
 
 router.get('/auth', AuthUtil.checkAuth, (req, res) => {
     res.send(new Response({ authorized: true }, 'User is authorized', true))
@@ -46,6 +47,7 @@ router.post('/register', (req, res) => {
         })
         .then(user => {
             req.session.user = user.dataValues
+            FSUtil.createUserDirectory(user.username)
             res.send(new Response(new SafeUser(user), 'User created successfully', true))
         })
         .catch(err => {

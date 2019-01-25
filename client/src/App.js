@@ -25,14 +25,9 @@ class App extends Component {
     getInitAuth() {
         return new Promise(resolve => {
             UserService.getAuth()
-                .then(() => {
-                    UserService.updateAuth(true)
-                    resolve(true)
-                })
-                .catch(() =>{
-                    UserService.updateAuth(false)
-                    resolve(false)
-                }) 
+                .then(() => UserService.updateAuth(true))
+                .catch(() => UserService.updateAuth(false))
+                .finally(() => resolve())
         })
     }
 

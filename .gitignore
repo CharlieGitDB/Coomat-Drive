@@ -2,6 +2,7 @@
 
 #hidden files
 /backend/models/StaticVariables.js
+coomatdrivestorage
 
 # dependencies
 /node_modules

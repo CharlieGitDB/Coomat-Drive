@@ -6,11 +6,15 @@ const session = require('express-session')
 const Response = require('./models/Response')
 const StaticVariables = require('./models/StaticVariables')
 const AuthUtil = require('./utils/AuthUtil')
+const FSUtil = require('./utils/FileSystemUtil')
 
 const indexRouter = require('./routes/index')
 const usersRouter = require('./routes/user')
 const adminRouter = require('./routes/admin')
 const filesRouter = require('./routes/file')
+
+//create the storage base directory
+FSUtil.createBaseStorage()
 
 const app = express()
 
@@ -50,5 +54,6 @@ app.use(function (err, req, res, next) {
     res.status(err.status || 500)
     res.send(new Response(null, err, false))
 })
+
 
 module.exports = app
