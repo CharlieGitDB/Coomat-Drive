@@ -11,7 +11,7 @@ import Auth from '../../pages/Auth/Auth'
 import Base from '../../pages/Base/Base'
 
 const Main = ({ hasAuth }) => (
-    <main className="Main">
+    <main className={'Main ' + (hasAuth ? 'fit-content' : '')}>
         <Router>
             <Switch>
                 <Route exact path="/login" render={props => <Auth hasAuth={hasAuth} {...props} />} />

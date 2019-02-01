@@ -8,7 +8,7 @@ const Files = ({ files }) => {
         return <h2 className="Files no-files">You currently have no files in your drive</h2>
     } else {
         return (
-            <ul>
+            <ul className="Files">
                 {files.map(file => <File key={file.id} {...file} />)}
             </ul>
         )
