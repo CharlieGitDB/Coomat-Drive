@@ -1,5 +1,5 @@
-import UserService from './UserService'
-import ErrorService from './ErrorService'
+import store from '../store/store'
+import ActionTypes from '../types/ActionTypes'
 
 const HttpMethods = {
     GET: 'GET',
@@ -25,7 +25,7 @@ export default class HttpService {
                     if (this.checkForErr(res)) {
                         reject(res)
                     } else {
-                        ErrorService.removeError()
+                        store.dispatch({ type: ActionTypes.UPDATE_ERROR, errorMsg: '' }) //not passing the second param (action) so that it is null, which removes the error
                         resolve(res)
                     }
                 })
@@ -41,7 +41,7 @@ export default class HttpService {
         
         if (err != null) {
             if (err.data != null && err.data.authorized != null && err.data.authorized === false) {
-                UserService.updateAuth(false)
+                store.dispatch({ type: ActionTypes.UPDATE_AUTH, hasAuth: false })
             }
 
             if (err.status === false) hasErr = true

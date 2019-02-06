@@ -2,6 +2,9 @@ import React, { Component } from 'react'
 import UserService from '../../providers/UserService'
 import ErrorService from '../../providers/ErrorService'
 
+import { connect } from 'react-redux'
+import { updateAuth, updateError } from '../../actions'
+
 import './SignUp.css'
 
 const FORM_STATUS = {
@@ -20,9 +23,9 @@ class SignUp extends Component {
 
     login = () => {
         UserService.login(this.username.value, this.password.value)
-            .then(res => UserService.updateAuth(true))
+            .then(res => this.props.updateAuth(true))
             .catch(err => {
-                ErrorService.updateError(err.msg)
+                this.props.updateError(err.msg)
                 this.password.value = ''
             })
     }
@@ -69,5 +72,10 @@ class SignUp extends Component {
     }
 }
 
+const mapDispatchToProps = {
+    updateAuth,
+    updateError
+}
 
-export default SignUp
+
+export default connect(null, mapDispatchToProps)(SignUp)

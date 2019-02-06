@@ -3,11 +3,14 @@ import { Navbar, Nav, NavItem, Glyphicon } from 'react-bootstrap'
 
 import HeaderSearch from '../HeaderSearch/HeaderSearch'
 
-import UserService from '../../providers/UserService'
-
 import './Header.css'
 
-const Header = ({ hasAuth }) => (
+/**
+ * @param {{hasAuth: boolean, logOut: function}}
+ * @param {boolean} hasAuth Does the user have authentication for the app?
+ * @param {function} logOut When fired logs the user of out the application
+ */
+const Header = ({ hasAuth, logOut }) => (
     <Navbar className="Header" fluid>
         <Navbar.Header>
             <Navbar.Brand>
@@ -19,7 +22,7 @@ const Header = ({ hasAuth }) => (
             <Nav pullRight>
                 { hasAuth ?
                     (
-                        <NavItem eventKey={1} href="#" onClick={() => UserService.logOut()}>
+                        <NavItem eventKey={1} href="#" onClick={() => logOut()}>
                             Sign Out <Glyphicon glyph="log-out" />
                         </NavItem>
                     ) : null

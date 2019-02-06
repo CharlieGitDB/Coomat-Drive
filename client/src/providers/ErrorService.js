@@ -1,28 +1,13 @@
-import { observe } from 'rxjs-observe'
+import ActionTypes from '../types/ActionTypes'
+import store from '../store/store'
 
 class ErrorService {
-    constructor() {
-        const err = { msg: null }
-        const {observables, proxy} = observe(err)
-        this.observables = observables
-        this.proxy = proxy
-    }
-
-    onErrorStateChange = () => {
-        return this.observables.msg
-    }
-
-    /**
-     * This updates the error message
-     * 
-     * @param {string} msg
-     */
-    updateError = (msg) => {
-        this.proxy.msg = msg
+    updateError = (errorMsg) => {
+        store.dispatch({ type: ActionTypes.UPDATE_ERROR, errorMsg })
     }
 
     removeError = () => {
-        this.updateError(null)
+        store.dispatch({ type: ActionTypes.UPDATE_ERROR, errorMsg: '' })
     }
 }
 

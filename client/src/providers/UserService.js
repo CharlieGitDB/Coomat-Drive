@@ -1,18 +1,8 @@
 import HttpService from './HttpService'
-import { observe } from 'rxjs-observe'
+import ActionTypes from '../types/ActionTypes'
+import store from '../store/store'
 
 class UserService {
-    constructor() {
-        const auth = { authorized: false }
-        const {observables, proxy} = observe(auth)
-        this.observables = observables
-        this.proxy = proxy
-    }
-
-    onAuthStateChange = () => {
-        return this.observables.authorized
-    }
-    
     getAuth = () => {
         return new Promise((resolve, reject) => {
             HttpService.Get('/user/auth')
@@ -20,19 +10,7 @@ class UserService {
                 .catch(err => reject(err))
         })
     }
-
-    /**
-     * Takes in their authorization status as a boolean
-     * 
-     * updateAuth(true) = the user is authorized
-     * updateAuth(false) = the user is not authorized
-     * 
-     * @param {boolean} status
-     */
-    updateAuth = (status) => {
-        this.proxy.authorized = status
-    }
-
+    
     login = (username, password) => {
         return new Promise((resolve, reject) => {
             HttpService.Post('/user/login', {
@@ -56,14 +34,10 @@ class UserService {
         })
     }
 
-    logOut = () => {
-        HttpService.Get('/user/logout')
-            .then(res => {
-                this.proxy.authorized = false
-            })
-            .catch(err => {
-                this.proxy.authorized = false
-            })
+    logOut = () => HttpService.Get('/user/logout')
+
+    updateAuth = (hasAuth) => {
+        store.dispatch({ type: ActionTypes.UPDATE_AUTH, hasAuth })
     }
 }
 
