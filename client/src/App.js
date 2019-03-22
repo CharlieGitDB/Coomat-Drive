@@ -15,11 +15,13 @@ class App extends Component {
     }
 
     render() {
+        const hasError = (this.props.errorMsg !== null && this.props.errorMsg !== '')
+
         return (
             <div className="App">
-                {this.props.hideLoader ? null : <FullLoader />}
+                <FullLoader isVisible={this.props.showLoader} />
                 <Header hasAuth={this.props.hasAuth} logOut={this.props.logOut} />
-                {this.props.errorMsg === null || this.props.errorMsg === '' ? null : <Error msg={this.props.errorMsg} />}
+                <Error isVisible={hasError} msg={this.props.errorMsg} />
                 <Main hasAuth={this.props.hasAuth} />
             </div>
         )
@@ -28,7 +30,7 @@ class App extends Component {
 
 const mapStateToProps = state => ({
     hasAuth: state.auth.hasAuth,
-    hideLoader: !state.loader.fullLoading,
+    showLoader: state.loader.fullLoading,
     errorMsg: state.error.errorMsg
 })
 
