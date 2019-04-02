@@ -11,4 +11,4 @@ To be able to run the project locally you will need to:
 `npm install`<br>
 `npm start`<br>
 
-both the client and the back end will need to be running at the same time for the application to work.
+Both the client and the back end will need to be running at the same time for the application to work.
