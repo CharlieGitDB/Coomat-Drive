@@ -1,4 +1,4 @@
-In the folder models folder there is a hidden file from the repo StaticVariables.js.
+In the models folder there is a hidden file from the repo StaticVariables.js.
 
 To run this app you need create StaticVariables.js:
 const STATIC_VARS = {
