@@ -10,6 +10,7 @@ import './Base.css'
 class Base extends Component {
     state = { files: [] }
     
+    //need to show a small loader here before the files load
     componentWillMount() {
         FileService.getFiles()
             .then(res => this.setState({ files: res.data }))
