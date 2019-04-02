@@ -6,7 +6,7 @@ To be able to run the project locally you will need to:
 `cd client`<br>
 `npm install`<br>
 `npm start`<br>
-<br><br>
+<br>
 `cd backend`<br>
 `npm install`<br>
 `npm start`<br>
